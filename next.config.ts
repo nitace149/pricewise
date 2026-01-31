@@ -1,8 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  experimental: {
+    // serverActions: true,
+  },
+
+  serverExternalPackages: ["mongoose"],
+
+  images: {
+    domains: ["m.media-amazon.com"]
+  }
 };
 
 export default nextConfig;

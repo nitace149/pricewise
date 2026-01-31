@@ -4,7 +4,7 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
+ 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -14,13 +14,54 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* --background: #0a0a0a;
+    --foreground: #ededed; */ 
+
+    --primary: #E43030;
+  --primary-orange: #D48D3B;
+  --primary-green: #3E9242;
+
+  --secondary: #282828;
+
+  --gray-200: #EAECF0;
+  --gray-300: #D0D5DD;
+  --gray-500: #667085;
+  --gray-600: #475467;
+  --gray-700: #344054;
+  --gray-900: #101828;
+
+  --white-100: #F4F4F4;
+  --white-200: #EDF0F8;
+
+  --black-100: #3D4258;
+  --neutral-black: #23263B;
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+  /* ---------- RADIUS ---------- */
+  --radius-10: 10px;
+
+  /* ---------- WIDTH ---------- */
+  --max-w-10xl: 1440px;
+
+  /* ---------- FONTS ---------- */
+  --font-inter: 'Inter', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter);
 }
+
+.btn {
+  @apply px-5 py-3 text-white font-semibold;
+  background-color: var(--primary);
+  border-radius: var(--radius-10);
+}
+.nav {
+    @apply flex justify-between items-center px-6 md:px-20 py-4;
+  }

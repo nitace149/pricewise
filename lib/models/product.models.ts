@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { Average } from "next/font/google";
 
 const productSchema = new mongoose.Schema({
     url: {type: String, required: true, unique: true},
@@ -19,7 +18,7 @@ const productSchema = new mongoose.Schema({
     averagePrice: {type: Number},
     discountRate: {type: Number},
     description: {type: String},
-    cateogory: {type: String},
+    category: { type: String, default: "category" },
     reviewsCount: {type: Number},
     isOutOfStock: {type: Boolean, default: false},
     users: [

@@ -9,6 +9,7 @@ import { User } from "@/types";
 import { generateEmailBody, sendEmail } from "../nodemailer";
 
 export async function scrapeAndStoreProduct(productURL : string) {
+    
     if(!productURL) return ;
 
     try {
@@ -27,13 +28,13 @@ export async function scrapeAndStoreProduct(productURL : string) {
                 ...existingProduct.priceHistory, {price: scrapedProduct.currentPrice}
             ]
         
-            // product = {
-            //     ...scrapedProduct, 
-            //     priceHistory: updatedPriceHistory,
-            //     lowestPrice: getLowestPrice(updatedPriceHistory),
-            //     highestPrice: getHighestPrice(updatedPriceHistory),
-            //     averagePrice: getAveragePrice(updatedPriceHistory)
-            // }
+            product = {
+                ...scrapedProduct, 
+                priceHistory: updatedPriceHistory,
+                lowestPrice: getLowestPrice(updatedPriceHistory),
+                highestPrice: getHighestPrice(updatedPriceHistory),
+                averagePrice: getAveragePrice(updatedPriceHistory)
+            }
         }
 
         const newProduct = await Product.findOneAndUpdate(

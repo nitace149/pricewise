@@ -1,10 +1,12 @@
 import axios from "axios";
 import * as cheerio from 'cheerio';
 import { extractCurrency, extractDescription, extractprice } from "./utils";
+import { Product } from "@/types";
 
 
-export async function scrapAmazonProduct(url: string){
+export async function scrapAmazonProduct(url: string): Promise<Product | undefined>{
     if(!url) return;
+    
 
     // BrightData Proxy Configuration
     const username = String(process.env.BRIGHT_DATA_USERNAME);
@@ -58,7 +60,7 @@ export async function scrapAmazonProduct(url: string){
             const description = extractDescription($);
 
             //Construct data object with scraped inpormation
-            const data =  {
+            const data: Product =  {
                 url,
                 currency: currency || '$',
                 image: imageUrls[0],
@@ -68,13 +70,13 @@ export async function scrapAmazonProduct(url: string){
                 priceHistory: [],
                 discountRate: Number(discountRate),
                 category: 'category',
-                reviewCount: '100',
+                reviewsCount: 100,
                 stars: 4.5,
-                isOutofstock: outOfStock,
+                isOutOfStock: outOfStock,
                 description,
                 lowestPrice: Number(currentPrice) || Number(originalPrice),
                 highestPrice: Number(originalPrice) || Number(currentPrice),
-                average: Number(currentPrice) || Number(originalPrice),
+                averagePrice: Number(currentPrice) || Number(originalPrice),
 
             }
             console.log(data);
